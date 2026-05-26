@@ -1,0 +1,729 @@
+/*
+ * SPIN × TalTech — Website skin override
+ * Target: spin.taltech.ee
+ *
+ * Inject this file AFTER the site's own stylesheet to apply the SPIN CVI.
+ * The site is a Tailwind + shadcn/ui React app that drives all colours
+ * through HSL custom properties, so remapping :root variables is enough
+ * to cover the vast majority of the UI.  Component-level tweaks follow below.
+ *
+ * Brand palette
+ *   Cyan  #00FFF0  → hsl(177 100% 50%)
+ *   Black #000000
+ *   White #FFFFFF
+ */
+
+/* ─── 1. DESIGN TOKENS ──────────────────────────────────────────────────── */
+
+:root {
+  /* Base surface & text */
+  --background:           0 0% 3%;      /* #080808 — main page bg          */
+  --foreground:           0 0% 100%;    /* #fff  — main text               */
+
+  /* Cards & popovers */
+  --card:                 0 0% 13%;     /* #212121 — card bg               */
+  --card-foreground:      0 0% 100%;
+  --popover:              0 0% 13%;
+  --popover-foreground:   0 0% 100%;
+
+  /* Primary = cyan CTA (button bg, active states) */
+  --primary:              177 100% 50%; /* #00FFF0                         */
+  --primary-foreground:   0 0% 0%;      /* black text on cyan              */
+
+  /* Secondary = dark surface (ghost cards, backgrounds) */
+  --secondary:            0 0% 26%;
+  --secondary-foreground: 0 0% 100%;
+
+  /* Muted */
+  --muted:                0 0% 28%;
+  --muted-foreground:     0 0% 65%;
+
+  /* Accent = cyan */
+  --accent:               177 100% 50%;
+  --accent-foreground:    0 0% 0%;
+
+  /* Destructive — keep legible on dark */
+  --destructive:          349 76% 64%;
+  --destructive-foreground: 0 0% 100%;
+
+  /* Borders & inputs */
+  --border:               0 0% 15%;
+  --input:                0 0% 15%;
+
+  /* Focus ring */
+  --ring:                 177 100% 50%;
+
+  /* Corner radius — rounder, matching SPIN pill/card system */
+  --radius:               1.25rem;      /* 20px */
+
+  /* ── TalTech-specific tokens ─────────────────────────────────────────── */
+  --taltech-primary:        0 0% 0%;      /* black                         */
+  --taltech-primary-dark:   0 0% 0%;
+  --taltech-secondary:      177 100% 50%; /* cyan                          */
+  --taltech-secondary-dark: 177 80% 40%;
+  --taltech-secondary-light:177 40% 10%;  /* dark cyan tint                */
+  --taltech-accent:         177 100% 50%;
+  --taltech-accent-dark:    177 80% 40%;
+  --taltech-accent-light:   177 40% 10%;
+  --taltech-burgundy:       177 60% 30%;  /* repurposed → darker cyan      */
+  --taltech-green:          106 46% 50%;  /* keep green for status badges  */
+  --taltech-dark:           0 0% 3%;
+  --taltech-light:          0 0% 32%;
+  --taltech-grey100:        0 0% 3%;
+  --taltech-grey200:        0 0% 13%;
+  --taltech-grey300:        0 0% 22%;
+  --taltech-grey400:        0 0% 33%;
+  --taltech-grey500:        0 0% 45%;
+  --taltech-grey600:        0 0% 62%;
+  --taltech-grey700:        0 0% 75%;
+  --taltech-grey900:        0 0% 100%;
+
+  /* Sidebar — dark */
+  --sidebar-background:             0 0% 0%;
+  --sidebar-foreground:             0 0% 80%;
+  --sidebar-primary:                177 100% 50%;
+  --sidebar-primary-foreground:     0 0% 0%;
+  --sidebar-accent:                 0 0% 14%;
+  --sidebar-accent-foreground:      0 0% 100%;
+  --sidebar-border:                 0 0% 15%;
+  --sidebar-ring:                   177 100% 50%;
+}
+
+/* ─── 2. BASE OVERRIDES ─────────────────────────────────────────────────── */
+
+body {
+  background-color: #080808;
+  color: #fff;
+  font-family: 'Proxima Nova', 'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 300;
+}
+
+/* Headings — use Light weight per SPIN CVI */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+/* Links */
+a {
+  color: #00FFF0;
+}
+a:hover {
+  color: #4dfff5;
+}
+
+/* ─── 3. NAVIGATION ─────────────────────────────────────────────────────── */
+
+header,
+nav,
+[class*="header"],
+[class*="navbar"],
+[class*="navigation"] {
+  background-color: #000 !important;
+  border-bottom-color: rgba(0, 255, 240, 0.15) !important;
+  color: #fff !important;
+}
+
+/* Center the nav using auto margins — no touching the logo link */
+header .section-container nav {
+  margin-left: 60px !important;
+  margin-right: 61px !important;
+}
+
+header .section-container > div:last-child {
+  flex-shrink: 0 !important;
+  width: fit-content !important;
+  margin-left: 0 !important;
+}
+
+/* Language switcher — outer wrapper */
+header div:has(button[class*="px-2"]) {
+  width: fit-content !important;
+  flex-shrink: 0 !important;
+  min-width: 0 !important;
+}
+
+/* Nav logo / brand text */
+header a,
+nav a {
+  color: #fff !important;
+}
+
+header a:hover,
+nav a:hover,
+nav [aria-current="page"] {
+  color: #00FFF0 !important;
+}
+
+/* Active nav indicator */
+nav [data-state="active"],
+nav [aria-current="page"] {
+  color: #00FFF0 !important;
+  border-bottom-color: #00FFF0 !important;
+}
+
+/* ─── 4. BUTTONS ────────────────────────────────────────────────────────── */
+
+/* Primary button — cyan pill */
+button[class*="bg-primary"],
+[class*="btn-primary"],
+[class*="Button"][class*="default"],
+[class*="button"][class*="default"] {
+  background-color: #00FFF0 !important;
+  color: #000 !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+  border: none !important;
+}
+button[class*="bg-primary"]:hover,
+[class*="btn-primary"]:hover {
+  background-color: #4dfff5 !important;
+}
+
+/* Outline / ghost buttons */
+button[class*="outline"],
+button[class*="ghost"] {
+  border-color: #00FFF0 !important;
+  color: #00FFF0 !important;
+  border-radius: 50px !important;
+  background: transparent !important;
+}
+button[class*="outline"]:hover,
+button[class*="ghost"]:hover {
+  background-color: rgba(0, 255, 240, 0.1) !important;
+}
+
+/* ─── 5. CARDS ──────────────────────────────────────────────────────────── */
+
+[class*="card"],
+[class*="Card"] {
+  background-color: #000 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  color: #fff !important;
+}
+
+[class*="card-title"],
+[class*="CardTitle"] {
+  color: #00FFF0 !important;
+  font-weight: 300 !important;
+}
+
+[class*="card-description"],
+[class*="CardDescription"] {
+  color: #888 !important;
+}
+
+/* ─── 6. HERO SECTION ───────────────────────────────────────────────────── */
+
+section:first-of-type,
+[class*="hero"],
+[class*="Hero"] {
+  background-color: #000 !important;
+}
+
+/* ─── 6b. REMOVE ALL GRADIENTS ──────────────────────────────────────────── */
+
+/* Kill every Tailwind gradient utility */
+[class*="bg-gradient"],
+[class*="bg-gradient-to"],
+[class*="from-"],
+[class*="via-"],
+[class*="to-"] {
+  background-image: none !important;
+}
+
+/* Kill any inline or component-level gradient backgrounds */
+* {
+  background-image: none !important;
+}
+
+/* Re-allow background images for actual images/icons */
+img,
+[class*="avatar"],
+[class*="Avatar"],
+[class*="icon"],
+[class*="Icon"],
+[role="img"] {
+  background-image: revert !important;
+}
+
+/* Gradient text — stripped gradient leaves text transparent, force white */
+[class*="text-gradient"],
+[class*="bg-clip-text"] {
+  background-image: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  color: #fff !important;
+}
+
+/* ─── 7. BADGES & TAGS ──────────────────────────────────────────────────── */
+
+[class*="badge"],
+[class*="Badge"],
+[class*="tag"],
+[class*="Tag"] {
+  background-color: rgba(0, 255, 240, 0.1) !important;
+  color: #00FFF0 !important;
+  border-color: rgba(0, 255, 240, 0.3) !important;
+  border-radius: 50px !important;
+}
+
+/* Secondary badge variant */
+[class*="badge"][class*="secondary"],
+[class*="Badge"][class*="secondary"] {
+  background-color: rgba(0, 255, 240, 0.08) !important;
+  color: rgba(0, 255, 240, 0.7) !important;
+}
+
+/* ─── 8. INPUTS & FORMS ─────────────────────────────────────────────────── */
+
+input,
+textarea,
+select,
+[class*="input"],
+[class*="Input"] {
+  background-color: #1a1a1a !important;
+  border-color: #2a2a2a !important;
+  color: #fff !important;
+  border-radius: 0.75rem !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #555 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+[class*="input"]:focus {
+  border-color: #00FFF0 !important;
+  box-shadow: 0 0 0 2px rgba(0, 255, 240, 0.2) !important;
+  outline: none !important;
+}
+
+/* ─── 9. TABS ───────────────────────────────────────────────────────────── */
+
+[role="tablist"],
+[class*="TabsList"] {
+  background-color: #1a1a1a !important;
+  border-radius: 50px !important;
+}
+
+[role="tab"],
+[class*="TabsTrigger"] {
+  color: #888 !important;
+  border-radius: 50px !important;
+}
+
+[role="tab"][data-state="active"],
+[class*="TabsTrigger"][data-state="active"] {
+  background-color: #00FFF0 !important;
+  color: #000 !important;
+  font-weight: 700 !important;
+}
+
+/* ─── 10. REMOVE LEFT-BORDER ACCENT CARDS ──────────────────────────────── */
+
+[class*="border-l-4"] {
+  border-left: none !important;
+}
+
+/* ─── 10b. LIGHT-BG ACCENT CARDS (e.g. Võimalused ja teenused) ─────────── */
+
+[class*="bg-taltech-light"] {
+  background-color: #111 !important;
+  color: #fff !important;
+}
+
+[class*="border-l-taltech-burgundy"],
+[class*="border-taltech-burgundy"] {
+  border: 1px solid #00FFF0 !important;
+}
+
+[class*="bg-taltech-light"] p {
+  color: #fff !important;
+}
+
+/* ─── 11. SEPARATORS & DIVIDERS ─────────────────────────────────────────── */
+
+hr,
+[class*="separator"],
+[class*="Separator"] {
+  border-color: #1e1e1e !important;
+  background-color: #1e1e1e !important;
+}
+
+/* ─── 11. SECTION BACKGROUNDS ───────────────────────────────────────────── */
+
+/* Alternate section backgrounds (light grey in original → dark in SPIN) */
+[class*="bg-gray-50"],
+[class*="bg-slate-50"],
+[class*="bg-white"],
+[class*="bg-taltech-grey100"],
+[class*="bg-taltech-grey200"] {
+  background-color: #0a0a0a !important;
+}
+
+[class*="bg-taltech-primary"],
+[class*="bg-primary"] {
+  background-color: #000 !important;
+}
+
+[class*="bg-taltech-secondary"],
+[class*="bg-secondary"] {
+  background-color: #1a1a1a !important;
+}
+
+/* Cyan accent sections */
+[class*="bg-taltech-accent"],
+[class*="bg-accent"] {
+  background-color: #00FFF0 !important;
+  color: #000 !important;
+}
+
+/* Text colour overrides for elements inside light-bg sections */
+[class*="bg-taltech-accent"] *,
+[class*="bg-accent"] * {
+  color: #000 !important;
+}
+
+/* ─── 12. TEXT READABILITY ON DARK BG ──────────────────────────────────── */
+
+/* Catch all dark Tailwind text utilities */
+[class*="text-gray-9"],
+[class*="text-gray-8"],
+[class*="text-gray-7"],
+[class*="text-slate-9"],
+[class*="text-slate-8"],
+[class*="text-slate-7"],
+[class*="text-zinc-9"],
+[class*="text-zinc-8"],
+[class*="text-neutral-9"],
+[class*="text-neutral-8"],
+[class*="text-black"],
+[class*="text-taltech-grey9"],
+[class*="text-taltech-dark"],
+[class*="text-foreground"],
+[class*="text-card-foreground"],
+[class*="text-popover-foreground"] {
+  color: #fff !important;
+}
+
+/* Mid-grey text — keep readable but subtler */
+[class*="text-gray-6"],
+[class*="text-gray-5"],
+[class*="text-slate-6"],
+[class*="text-slate-5"],
+[class*="text-zinc-6"],
+[class*="text-neutral-6"],
+[class*="text-taltech-grey7"],
+[class*="text-taltech-grey6"] {
+  color: #aaa !important;
+}
+
+/* Bullet points & list items */
+ul, ol {
+  color: #fff !important;
+}
+
+li {
+  color: #fff !important;
+}
+
+li::marker {
+  color: #00FFF0 !important;
+}
+
+/* Custom dot bullets (span or div used as bullet) */
+li span[class*="rounded-full"][class*="bg-secondary"],
+li span[class*="rounded-full"][class*="bg-primary"],
+[class*="w-2.5"][class*="h-2.5"][class*="rounded-full"],
+[class*="w-1.5"][class*="h-1.5"][class*="rounded-full"] {
+  background-color: #00FFF0 !important;
+}
+
+/* text-foreground/70 opacity text inside list items */
+li[class*="text-foreground"] {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+/* Catch any remaining dark inline text (e.g. hardcoded Tailwind on badges/labels) */
+p, span, li, td, th, label, dt, dd, blockquote, figcaption {
+  color: inherit;
+}
+
+/* ─── 12b. TYPOGRAPHY ACCENTS ───────────────────────────────────────────── */
+
+[class*="text-primary"],
+[class*="text-secondary"],
+[class*="text-taltech-primary"],
+[class*="text-taltech-secondary"],
+[class*="text-taltech-accent"],
+[class*="text-taltech-burgundy"],
+[class*="text-accent"],
+[class*="text-teal"],
+[class*="text-cyan"] {
+  color: #00FFF0 !important;
+}
+
+[class*="text-muted"] {
+  color: #888 !important;
+}
+
+/* ─── 12c. TEAL → CYAN REPLACEMENT ─────────────────────────────────────── */
+
+/* Background teal → cyan */
+[class*="bg-teal"],
+[class*="bg-taltech-accent"],
+[class*="bg-taltech-burgundy"],
+[class*="bg-accent"] {
+  background-color: #00FFF0 !important;
+  color: #000 !important;
+}
+
+[class*="bg-taltech-burgundy"] *,
+[class*="bg-taltech-accent"] *,
+[class*="bg-teal"] * {
+  color: #000 !important;
+}
+
+/* Border teal → cyan (including opacity variants like /30) */
+[class*="border-teal"],
+[class*="border-taltech-accent"],
+[class*="border-taltech-burgundy"],
+[class*="border-accent"] {
+  border-color: rgba(0, 255, 240, 0.35) !important;
+}
+
+/* Faint burgundy background tints (e.g. /5, /10) → subtle cyan tint */
+[class*="bg-taltech-burgundy/"] {
+  background-color: rgba(0, 255, 240, 0.06) !important;
+  color: inherit !important;
+}
+
+/* Solid burgundy icon containers → transparent, cyan SVG */
+[class*="bg-taltech-burgundy"]:not([class*="bg-taltech-burgundy/"]) {
+  background-color: transparent !important;
+}
+
+[class*="bg-taltech-burgundy"]:not([class*="bg-taltech-burgundy/"]) svg {
+  color: #00FFF0 !important;
+  stroke: #00FFF0 !important;
+}
+
+/* Ring / outline teal → cyan */
+[class*="ring-teal"],
+[class*="ring-taltech-accent"],
+[class*="ring-accent"] {
+  --tw-ring-color: #00FFF0 !important;
+}
+
+/* Divide teal → cyan */
+[class*="divide-teal"],
+[class*="divide-taltech-accent"] {
+  border-color: #00FFF0 !important;
+}
+
+/* Fill / stroke (SVG icons) teal → cyan */
+[class*="fill-teal"],
+[class*="fill-taltech-accent"],
+[class*="stroke-teal"],
+[class*="stroke-taltech-accent"] {
+  fill: #00FFF0 !important;
+  stroke: #00FFF0 !important;
+}
+
+/* Decoration teal → cyan */
+[class*="decoration-teal"],
+[class*="decoration-taltech-accent"] {
+  text-decoration-color: #00FFF0 !important;
+}
+
+/* Shadow teal → cyan */
+[class*="shadow-teal"],
+[class*="shadow-taltech-accent"] {
+  --tw-shadow-color: #00FFF0 !important;
+}
+
+/* ─── 13. DROPDOWN / SELECT / POPOVER ──────────────────────────────────── */
+
+[class*="DropdownMenuContent"],
+[class*="SelectContent"],
+[class*="PopoverContent"],
+[class*="dialog"],
+[class*="Dialog"][class*="Content"],
+[class*="sheet"],
+[class*="Sheet"][class*="Content"] {
+  background-color: #111 !important;
+  border-color: #222 !important;
+  color: #fff !important;
+}
+
+[class*="DropdownMenuItem"]:hover,
+[class*="SelectItem"][data-highlighted],
+[class*="MenuItem"]:hover {
+  background-color: rgba(0, 255, 240, 0.1) !important;
+  color: #00FFF0 !important;
+}
+
+/* ─── 14. SCROLLBARS ────────────────────────────────────────────────────── */
+
+* {
+  scrollbar-color: #00FFF0 rgba(255, 255, 255, 0.06);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00FFF0;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #4dfff5;
+}
+
+/* ─── 15. CONTENT WIDTH ─────────────────────────────────────────────────── */
+
+main,
+[class*="container"],
+[class*="Container"] {
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Sections that use full-bleed backgrounds should keep the bg full-width
+   but constrain the inner content */
+section > *,
+[class*="section"] > * {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+/* ─── 16. FOOTER ────────────────────────────────────────────────────────── */
+
+footer,
+[class*="footer"],
+[class*="Footer"] {
+  background-color: #000 !important;
+  border-top-color: rgba(0, 255, 240, 0.15) !important;
+  color: #fff !important;
+}
+
+footer a,
+[class*="footer"] a {
+  color: #888 !important;
+}
+
+footer a:hover,
+[class*="footer"] a:hover {
+  color: #00FFF0 !important;
+}
+
+/* ─── 16. 5-COL GRID → 3×2 ──────────────────────────────────────────────── */
+
+[class*="lg:grid-cols-5"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+[class*="lg:grid-cols-5"] > * {
+  text-align: left !important;
+}
+
+[class*="lg:grid-cols-5"] > * [class*="mx-auto"] {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* ─── 16b. ICON TOPIC GRID (lg:grid-cols-4) ─────────────────────────────── */
+
+[class*="lg:grid-cols-4"] {
+  gap: 0 !important;
+}
+
+[class*="lg:grid-cols-4"] > [class*="rounded-lg"] {
+  border: none !important;
+  border-radius: 2rem !important;
+  box-shadow: none !important;
+  aspect-ratio: 1 / 1 !important;
+  justify-content: center !important;
+}
+
+/* ─── 16c. VENN DIAGRAM CIRCLES ─────────────────────────────────────────── */
+
+/* Four outer circles → solid cyan */
+[class*="w-\[155px\]"][class*="rounded-full"] {
+  background-color: #00FFF0 !important;
+  border-color: #00FFF0 !important;
+}
+
+[class*="w-\[155px\]"][class*="rounded-full"] svg,
+[class*="w-\[155px\]"][class*="rounded-full"] span {
+  color: #000 !important;
+  stroke: #000 !important;
+}
+
+/* Center circle → black with cyan text */
+[class*="gradient-magenta"] {
+  background: #000 !important;
+  background-image: none !important;
+  border: 1px solid #00FFF0 !important;
+  box-shadow: none !important;
+}
+
+[class*="gradient-magenta"] span {
+  color: #00FFF0 !important;
+}
+
+/* ─── 17. SELECTION ─────────────────────────────────────────────────────── */
+
+::selection {
+  background-color: rgba(0, 255, 240, 0.25);
+  color: #fff;
+}
+
+/* ─── 17. LOGO SIZE ─────────────────────────────────────────────────────── */
+
+/* Header logo */
+header img[alt="TalTech SPIN"] {
+  height: 1.5rem !important;
+}
+
+/* Footer logo */
+footer img[alt="TalTech SPIN"] {
+  height: 1.25rem !important;
+}
+
+/* ─── 17b. LOGO REPLACEMENT ─────────────────────────────────────────────── */
+
+img[src*="spin-logo"],
+img[alt="TalTech SPIN"] {
+  content: url("http://localhost:8765/CVI/Onepager_Claude/1.%20Logo/Static%20logos/Secondary%20logo%20element.svg");
+  filter: brightness(0) invert(1); /* make it white on dark bg */
+}
+
+/* ─── 18. FOCUS VISIBLE ─────────────────────────────────────────────────── */
+
+:focus-visible {
+  outline: 2px solid #00FFF0 !important;
+  outline-offset: 2px !important;
+}
