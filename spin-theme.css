@@ -727,3 +727,246 @@ img[alt="TalTech SPIN"] {
   outline: 2px solid #00FFF0 !important;
   outline-offset: 2px !important;
 }
+
+/* ─── 19. LIGHT MODE ────────────────────────────────────────────────────── */
+/*
+ * Light mode: light grey page, dark cards/tiles, no cyan on light surfaces.
+ * Toggle via JS by adding .light-mode to <body>.
+ */
+
+/* Token overrides — cascade from body to all descendants */
+body.light-mode {
+  --background:           0 0% 94%;
+  --foreground:           0 0% 8%;
+  --card:                 0 0% 7%;
+  --card-foreground:      0 0% 100%;
+  --primary:              0 0% 8%;
+  --primary-foreground:   0 0% 100%;
+  --secondary:            0 0% 86%;
+  --secondary-foreground: 0 0% 8%;
+  --muted:                0 0% 86%;
+  --muted-foreground:     0 0% 40%;
+  --accent:               0 0% 8%;
+  --accent-foreground:    0 0% 100%;
+  --border:               0 0% 78%;
+  --input:                0 0% 90%;
+  --ring:                 0 0% 8%;
+  --taltech-primary:      0 0% 8%;
+  --taltech-secondary:    0 0% 8%;
+  --taltech-accent:       0 0% 8%;
+  --taltech-burgundy:     0 0% 8%;
+  --taltech-dark:         0 0% 94%;
+  --taltech-light:        0 0% 84%;
+  --taltech-grey100:      0 0% 94%;
+  --taltech-grey200:      0 0% 88%;
+  --taltech-grey300:      0 0% 80%;
+  --taltech-grey400:      0 0% 66%;
+  --taltech-grey500:      0 0% 52%;
+  --taltech-grey600:      0 0% 38%;
+  --taltech-grey700:      0 0% 24%;
+  --taltech-grey900:      0 0% 8%;
+  --sidebar-background:   0 0% 88%;
+  --sidebar-primary:      0 0% 8%;
+}
+
+/* Base */
+body.light-mode {
+  background: #f0f0f0 !important;
+  color: #111 !important;
+}
+body.light-mode main { background: #f0f0f0 !important; }
+
+/* Header & nav */
+body.light-mode header { background: #ffffff !important; }
+body.light-mode header nav { background: #ffffff !important; }
+body.light-mode header a,
+body.light-mode header button,
+body.light-mode header span { color: #111 !important; }
+body.light-mode nav a[class*="text-taltech"],
+body.light-mode nav [class*="border-b"] {
+  color: #111 !important;
+  border-color: #111 !important;
+}
+
+/* Section alternating light greys */
+body.light-mode section,
+body.light-mode [class*="section"] {
+  background: #f0f0f0 !important;
+}
+body.light-mode section:nth-child(even),
+body.light-mode [class*="section"]:nth-child(even) {
+  background: #e6e6e6 !important;
+}
+
+/* Footer */
+body.light-mode footer { background: #dcdcdc !important; }
+body.light-mode footer * { color: #111 !important; }
+
+/* ── Cards & tiles: keep dark ───────────────────────────────────────────── */
+body.light-mode [class*="bg-card"],
+body.light-mode .card {
+  background: #111 !important;
+}
+body.light-mode [class*="bg-card"] *,
+body.light-mode .card * {
+  color: #fff !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* Icon grid cells stay dark */
+body.light-mode [class*="aspect-square"] {
+  background: #111 !important;
+}
+body.light-mode [class*="aspect-square"] * {
+  color: #fff !important;
+}
+
+/* ── Buttons: black, not cyan ───────────────────────────────────────────── */
+body.light-mode [class*="bg-taltech-burgundy"]:not([class*="bg-taltech-burgundy/"]) {
+  background: #111 !important;
+  color: #fff !important;
+}
+body.light-mode [class*="bg-taltech-burgundy"]:not([class*="bg-taltech-burgundy/"]) * {
+  color: #fff !important;
+}
+
+/* Outline / ghost variants */
+body.light-mode [class*="border-taltech-burgundy"]:not([class*="border-taltech-burgundy/"]),
+body.light-mode [class*="border-primary"]:not([class*="border-primary/"]) {
+  border-color: #111 !important;
+  color: #111 !important;
+}
+
+/* ── Text: no cyan on light backgrounds ─────────────────────────────────── */
+body.light-mode [class*="text-taltech-burgundy"],
+body.light-mode [class*="text-taltech-accent"],
+body.light-mode [class*="text-taltech-secondary"],
+body.light-mode [class*="text-primary"] {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+}
+body.light-mode [class*="text-gradient"] {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+}
+
+/* Muted / secondary text */
+body.light-mode [class*="text-muted"],
+body.light-mode [class*="text-foreground/70"],
+body.light-mode [class*="text-foreground/60"],
+body.light-mode [class*="text-secondary"] {
+  color: #555 !important;
+  opacity: 1 !important;
+  -webkit-text-fill-color: #555 !important;
+}
+
+/* Dark Tailwind text classes */
+body.light-mode [class*="text-gray-900"],
+body.light-mode [class*="text-gray-800"],
+body.light-mode [class*="text-taltech-grey900"],
+body.light-mode [class~="text-foreground"] {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
+}
+
+/* ── Badges: dark ───────────────────────────────────────────────────────── */
+body.light-mode [class*="badge"],
+body.light-mode [class*="Badge"] {
+  background: #111 !important;
+  color: #fff !important;
+  border-color: #111 !important;
+}
+
+/* ── Opacity tint backgrounds ───────────────────────────────────────────── */
+body.light-mode [class*="bg-taltech-burgundy/"] {
+  background-color: rgba(0,0,0,0.06) !important;
+}
+body.light-mode [class*="border-taltech-burgundy/"] {
+  border-color: rgba(0,0,0,0.18) !important;
+}
+
+/* ── Icon wrappers (SVG in rounded container) ───────────────────────────── */
+body.light-mode [class*="bg-taltech-burgundy"][class*="rounded"] {
+  background: #111 !important;
+}
+body.light-mode [class*="bg-taltech-burgundy"][class*="rounded"] svg,
+body.light-mode [class*="bg-taltech-burgundy"][class*="rounded"] * {
+  color: #fff !important;
+}
+
+/* ── Light-bg accent cards (bg-taltech-light) ───────────────────────────── */
+body.light-mode [class*="bg-taltech-light"] {
+  background: #e0e0e0 !important;
+  border-color: rgba(0,0,0,0.18) !important;
+}
+body.light-mode [class*="bg-taltech-light"] * { color: #111 !important; }
+
+/* ── Venn diagram ───────────────────────────────────────────────────────── */
+body.light-mode [class*="rounded-full"][class*="bg-taltech"] {
+  background: #111 !important;
+  border-color: #111 !important;
+}
+body.light-mode [class*="rounded-full"][class*="bg-taltech"] * {
+  color: #fff !important;
+}
+/* centre circle */
+body.light-mode [class*="rounded-full"][class*="bg-black"] {
+  background: #f0f0f0 !important;
+  border: 1px solid #111 !important;
+}
+body.light-mode [class*="rounded-full"][class*="bg-black"] * {
+  color: #111 !important;
+}
+
+/* ── Inputs ─────────────────────────────────────────────────────────────── */
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+  background: #ffffff !important;
+  color: #111 !important;
+  border-color: #bbb !important;
+}
+body.light-mode input:focus,
+body.light-mode textarea:focus {
+  border-color: #111 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.15) !important;
+}
+
+/* ── Tabs ───────────────────────────────────────────────────────────────── */
+body.light-mode [role="tab"] { color: #666 !important; }
+body.light-mode [role="tab"][data-state="active"] {
+  color: #111 !important;
+  border-color: #111 !important;
+}
+
+/* ── Dropdowns ──────────────────────────────────────────────────────────── */
+body.light-mode [role="menu"] {
+  background: #ffffff !important;
+  border-color: #ddd !important;
+}
+body.light-mode [role="menuitem"] { color: #111 !important; }
+body.light-mode [role="menuitem"]:hover { background: #f0f0f0 !important; }
+
+/* ── Separators ─────────────────────────────────────────────────────────── */
+body.light-mode [class*="separator"],
+body.light-mode hr {
+  background: #ccc !important;
+  border-color: #ccc !important;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────── */
+body.light-mode ::-webkit-scrollbar-track { background: #e8e8e8; }
+body.light-mode ::-webkit-scrollbar-thumb { background: #aaa; }
+body.light-mode ::-webkit-scrollbar-thumb:hover { background: #777; }
+
+/* ── Focus ──────────────────────────────────────────────────────────────── */
+body.light-mode *:focus-visible {
+  outline-color: #111 !important;
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.2) !important;
+}
+
+/* ── Logo: dark on light background ────────────────────────────────────── */
+body.light-mode img[src*="spin-logo"],
+body.light-mode img[alt="TalTech SPIN"] {
+  filter: brightness(0) !important;
+}

@@ -5,6 +5,7 @@ const path = require('path');
 const app = express();
 
 app.use('/spin-theme.css', express.static(path.join(__dirname, 'spin-theme.css')));
+app.use('/theme-toggle.js', express.static(path.join(__dirname, 'theme-toggle.js')));
 
 app.use('/', createProxyMiddleware({
   target: 'https://spin.taltech.ee',
@@ -18,7 +19,10 @@ app.use('/', createProxyMiddleware({
       const contentType = proxyRes.headers['content-type'] || '';
       if (contentType.includes('text/html')) {
         const html = responseBuffer.toString('utf8');
-        return html.replace('</head>', '<link rel="stylesheet" href="/spin-theme.css">\n</head>');
+        return html.replace(
+          '</head>',
+          '<link rel="stylesheet" href="/spin-theme.css">\n<script src="/theme-toggle.js"></script>\n</head>'
+        );
       }
       return responseBuffer;
     }),
