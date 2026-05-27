@@ -789,10 +789,6 @@ body.light-mode nav [class*="border-b"] {
 }
 
 /* Section alternating light greys */
-body.light-mode section,
-body.light-mode [class*="section"] {
-  background: #f0f0f0 !important;
-}
 body.light-mode section:nth-child(even),
 body.light-mode [class*="section"]:nth-child(even) {
   background: #e6e6e6 !important;
