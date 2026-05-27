@@ -214,13 +214,6 @@ button[class*="ghost"]:hover {
   color: #888 !important;
 }
 
-/* ─── 6. HERO SECTION ───────────────────────────────────────────────────── */
-
-section:first-of-type,
-[class*="hero"],
-[class*="Hero"] {
-  background-color: #000 !important;
-}
 
 /* ─── 6b. REMOVE ALL GRADIENTS ──────────────────────────────────────────── */
 
@@ -410,6 +403,26 @@ hr,
 [class*="text-card-foreground"],
 [class*="text-popover-foreground"] {
   color: #fff !important;
+}
+
+body.light-mode [class*="text-gray-9"],
+body.light-mode [class*="text-gray-8"],
+body.light-mode [class*="text-gray-7"],
+body.light-mode [class*="text-slate-9"],
+body.light-mode [class*="text-slate-8"],
+body.light-mode [class*="text-slate-7"],
+body.light-mode [class*="text-zinc-9"],
+body.light-mode [class*="text-zinc-8"],
+body.light-mode [class*="text-neutral-9"],
+body.light-mode [class*="text-neutral-8"],
+body.light-mode [class*="text-black"],
+body.light-mode [class*="text-taltech-grey9"],
+body.light-mode [class*="text-taltech-dark"],
+body.light-mode [class*="text-foreground"],
+body.light-mode [class*="text-card-foreground"],
+body.light-mode [class*="text-popover-foreground"] {
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
 }
 
 /* Mid-grey text — keep readable but subtler */
@@ -778,7 +791,7 @@ body.light-mode main { background: #f0f0f0 !important; }
 
 /* Header & nav */
 body.light-mode header { background: #ffffff !important; }
-body.light-mode header nav { background: #ffffff !important; }
+body.light-mode nav { background-color: transparent !important; }
 body.light-mode header a,
 body.light-mode header button,
 body.light-mode header span { color: #111 !important; }
@@ -788,25 +801,35 @@ body.light-mode nav [class*="border-b"] {
   border-color: #111 !important;
 }
 
-/* Section alternating light greys */
-body.light-mode section:nth-child(even),
-body.light-mode [class*="section"]:nth-child(even) {
-  background: #e6e6e6 !important;
+
+/* Undo dark-mode forced backgrounds on section-level light classes */
+body.light-mode [class*="bg-gray-50"],
+body.light-mode [class*="bg-slate-50"],
+body.light-mode [class*="bg-white"],
+body.light-mode [class*="bg-taltech-grey100"],
+body.light-mode [class*="bg-taltech-grey200"],
+body.light-mode [class*="bg-taltech-dark"] {
+  background-color: transparent !important;
+}
+
+body.light-mode .gradient-navy,
+body.light-mode .section-container {
+  background-color: transparent !important;
 }
 
 /* Footer */
 body.light-mode footer { background: #dcdcdc !important; }
 body.light-mode footer * { color: #111 !important; }
 
-/* ── Cards & tiles: keep dark ───────────────────────────────────────────── */
+/* ── Cards & tiles: grey in light mode ──────────────────────────────────── */
 body.light-mode [class*="bg-card"],
 body.light-mode .card {
-  background: #111 !important;
+  background: #ededed !important;
 }
 body.light-mode [class*="bg-card"] *,
 body.light-mode .card * {
-  color: #fff !important;
-  -webkit-text-fill-color: #fff !important;
+  color: #111 !important;
+  -webkit-text-fill-color: #111 !important;
 }
 
 /* Icon grid cells stay dark */
@@ -831,6 +854,33 @@ body.light-mode [class*="border-taltech-burgundy"]:not([class*="border-taltech-b
 body.light-mode [class*="border-primary"]:not([class*="border-primary/"]) {
   border-color: #111 !important;
   color: #111 !important;
+}
+
+/* ── Primary/secondary tint pills ───────────────────────────────────────── */
+body.light-mode [class*="bg-primary/5"],
+body.light-mode [class*="bg-primary/10"],
+body.light-mode [class*="bg-taltech-secondary/5"],
+body.light-mode [class*="bg-taltech-secondary/10"],
+body.light-mode [class*="bg-taltech-burgundy/5"],
+body.light-mode [class*="bg-taltech-burgundy/10"] {
+  background-color: #e4e4e4 !important;
+  color: #111 !important;
+}
+
+/* ── bg-secondary / bg-taltech-secondary ─────────────────────────────────── */
+body.light-mode [class*="bg-taltech-secondary"],
+body.light-mode [class*="bg-secondary"] {
+  background-color: #00FFF0 !important;
+}
+
+/* ── gradient-magenta button ─────────────────────────────────────────────── */
+body.light-mode [class*="gradient-magenta"] {
+  background: #111 !important;
+  border-color: #111 !important;
+  color: #fff !important;
+}
+body.light-mode [class*="gradient-magenta"] * {
+  color: #fff !important;
 }
 
 /* ── Text: no cyan on light backgrounds ─────────────────────────────────── */
@@ -865,12 +915,20 @@ body.light-mode [class~="text-foreground"] {
   -webkit-text-fill-color: #111 !important;
 }
 
-/* ── Badges: dark ───────────────────────────────────────────────────────── */
+/* ── Badges ──────────────────────────────────────────────────────────────── */
 body.light-mode [class*="badge"],
 body.light-mode [class*="Badge"] {
-  background: #111 !important;
-  color: #fff !important;
-  border-color: #111 !important;
+  background: #00FFF0 !important;
+  color: #000 !important;
+  border-color: #00FFF0 !important;
+}
+
+body.light-mode span[class*="bg-taltech-green"] {
+  background: #00FFF0 !important;
+  background-color: #00FFF0 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #00FFF0 !important;
+  border-color: #00FFF0 !important;
 }
 
 /* ── Opacity tint backgrounds ───────────────────────────────────────────── */
