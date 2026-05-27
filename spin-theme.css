@@ -717,7 +717,7 @@ footer img[alt="TalTech SPIN"] {
 
 img[src*="spin-logo"],
 img[alt="TalTech SPIN"] {
-  content: url("http://localhost:8765/CVI/Onepager_Claude/1.%20Logo/Static%20logos/Secondary%20logo%20element.svg");
+  content: url("/logo.svg");
   filter: brightness(0) invert(1); /* make it white on dark bg */
 }
 

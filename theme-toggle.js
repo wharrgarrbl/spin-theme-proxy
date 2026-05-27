@@ -5,15 +5,9 @@
     document.body.classList.toggle('light-mode', light);
   }
 
-  // Restore saved preference before first paint
+  // Apply saved preference immediately — body is available (script is in </body>)
   var saved = localStorage.getItem('spin-theme-mode');
-  if (saved === 'light') {
-    if (document.body) {
-      applyMode(true);
-    } else {
-      document.addEventListener('DOMContentLoaded', function () { applyMode(true); });
-    }
-  }
+  if (saved === 'light') applyMode(true);
 
   function createToggle() {
     if (document.getElementById('spin-theme-toggle')) return;
@@ -30,26 +24,27 @@
 
     btn.style.cssText = [
       'position:fixed',
-      'top:14px',
-      'right:24px',
-      'z-index:99999',
+      'bottom:28px',
+      'right:28px',
+      'z-index:2147483647',
       'background:transparent',
       'border:1px solid',
       'border-radius:50px',
-      'padding:5px 13px',
+      'padding:6px 14px',
       'font-family:inherit',
       'font-size:10px',
       'font-weight:300',
       'letter-spacing:0.1em',
       'cursor:pointer',
-      'opacity:0.65',
+      'opacity:0.6',
       'transition:opacity 0.2s',
+      'pointer-events:auto',
     ].join(';');
 
     update();
 
     btn.addEventListener('mouseenter', function () { btn.style.opacity = '1'; });
-    btn.addEventListener('mouseleave', function () { btn.style.opacity = '0.65'; });
+    btn.addEventListener('mouseleave', function () { btn.style.opacity = '0.6'; });
 
     btn.addEventListener('click', function () {
       var nowLight = !document.body.classList.contains('light-mode');
@@ -61,9 +56,6 @@
     document.body.appendChild(btn);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createToggle);
-  } else {
-    createToggle();
-  }
+  // Delay to let React fully mount before appending the button
+  setTimeout(createToggle, 1000);
 })();
