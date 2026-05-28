@@ -30,7 +30,7 @@
     '--spin-bg-overlay':   [],
     '--spin-text':         ['--foreground', '--card-foreground', '--popover-foreground', '--secondary-foreground'],
     '--spin-text-muted':   ['--muted-foreground'],
-    '--spin-accent':       ['--primary', '--accent', '--ring'],
+    '--spin-accent':       ['--primary', '--accent', '--ring', '--taltech-green'],
     '--spin-on-accent':    ['--primary-foreground', '--accent-foreground'],
   };
 

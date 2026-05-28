@@ -542,9 +542,24 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
   border-color: rgba(0, 255, 240, 0.35) !important;
 }
 
+/* Green badge → cyan */
+[class*="bg-taltech-green"]:not([class*="bg-taltech-green/"]) {
+  background-color: var(--spin-accent) !important;
+  color: var(--spin-on-accent, #000) !important;
+}
+[class*="bg-taltech-green"]:not([class*="bg-taltech-green/"]) * {
+  color: var(--spin-on-accent, #000) !important;
+}
+
+/* Faint green tint (e.g. /10) → subtle cyan tint */
+[class*="bg-taltech-green/"] {
+  background-color: rgba(var(--spin-accent-rgb), 0.1) !important;
+  color: inherit !important;
+}
+
 /* Faint burgundy background tints (e.g. /5, /10) → subtle cyan tint */
 [class*="bg-taltech-burgundy/"] {
-  background-color: rgba(0, 255, 240, 0.06) !important;
+  background-color: rgba(var(--spin-accent-rgb), 0.06) !important;
   color: inherit !important;
 }
 
