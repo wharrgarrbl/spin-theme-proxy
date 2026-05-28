@@ -18,10 +18,41 @@
 
   var STORE_KEY = 'spin-palette';
 
+  /* Map spin variables → shadcn/ui HSL tokens that also need updating */
+  var TOKEN_MAP = {
+    '--spin-bg-page':      ['--background', '--taltech-grey100', '--taltech-dark'],
+    '--spin-bg-card':      ['--card', '--popover'],
+    '--spin-bg-secondary': ['--secondary', '--muted'],
+    '--spin-bg-input':     ['--input'],
+    '--spin-bg-overlay':   [],
+    '--spin-text':         ['--foreground', '--card-foreground', '--popover-foreground', '--secondary-foreground'],
+    '--spin-text-muted':   ['--muted-foreground'],
+    '--spin-accent':       ['--primary', '--accent', '--ring'],
+  };
+
   function hexToRgb(hex) {
     hex = hex.replace('#', '');
     if (hex.length === 3) hex = hex.split('').map(function(c){ return c+c; }).join('');
     return parseInt(hex.slice(0,2),16) + ', ' + parseInt(hex.slice(2,4),16) + ', ' + parseInt(hex.slice(4,6),16);
+  }
+
+  /* Returns "H S% L%" string for use in hsl(var(--token)) */
+  function hexToHsl(hex) {
+    hex = hex.replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(function(c){ return c+c; }).join('');
+    var r = parseInt(hex.slice(0,2),16)/255;
+    var g = parseInt(hex.slice(2,4),16)/255;
+    var b = parseInt(hex.slice(4,6),16)/255;
+    var max = Math.max(r,g,b), min = Math.min(r,g,b);
+    var h=0, s=0, l=(max+min)/2;
+    if (max !== min) {
+      var d = max - min;
+      s = l > 0.5 ? d/(2-max-min) : d/(max+min);
+      if (max===r) h = ((g-b)/d + (g<b?6:0))/6;
+      else if (max===g) h = ((b-r)/d + 2)/6;
+      else h = ((r-g)/d + 4)/6;
+    }
+    return Math.round(h*360) + ' ' + Math.round(s*100) + '% ' + Math.round(l*100) + '%';
   }
 
   function applyVar(key, value) {
@@ -29,6 +60,11 @@
     if (key === '--spin-accent') {
       try { document.documentElement.style.setProperty('--spin-accent-rgb', hexToRgb(value)); } catch(e){}
     }
+    /* Mirror value to related shadcn HSL tokens */
+    var hsl = hexToHsl(value);
+    (TOKEN_MAP[key] || []).forEach(function(token) {
+      document.documentElement.style.setProperty(token, hsl);
+    });
   }
 
   function loadSaved() {
