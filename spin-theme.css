@@ -793,6 +793,19 @@ img[alt="TalTech SPIN"] {
   outline-offset: 2px !important;
 }
 
+/* ─── 18b. SECTION SHAPE & SPACING ─────────────────────────────────────── */
+
+section {
+  border-radius: 50px !important;
+  border: 0px !important;
+  margin-top: 20px !important;
+}
+
+section#contact-form,
+.section-padding {
+  background: none !important;
+}
+
 /* ─── 19. LIGHT MODE ────────────────────────────────────────────────────── */
 /*
  * Light mode: light grey page, dark cards/tiles, no cyan on light surfaces.
