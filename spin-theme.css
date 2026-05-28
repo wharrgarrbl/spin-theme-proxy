@@ -811,6 +811,9 @@ section#contact-form,
   padding-bottom: 3rem !important;
 }
 
+.gap-4 { gap: 0.1rem !important; }
+.gap-5 { gap: 0.1rem !important; }
+
 footer {
   margin-top: 40px !important;
 }
