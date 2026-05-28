@@ -21,8 +21,10 @@
   /* Map spin variables → shadcn/ui HSL tokens that also need updating */
   var TOKEN_MAP = {
     '--spin-bg-page':      ['--background', '--taltech-grey100', '--taltech-dark'],
+    '--spin-bg-nav':       ['--taltech-primary', '--taltech-primary-dark', '--sidebar-background'],
+    '--spin-bg-section':   ['--taltech-grey200'],
     '--spin-bg-card':      ['--card', '--popover'],
-    '--spin-bg-secondary': ['--secondary', '--muted'],
+    '--spin-bg-secondary': ['--secondary', '--muted', '--border'],
     '--spin-bg-input':     ['--input'],
     '--spin-bg-overlay':   [],
     '--spin-text':         ['--foreground', '--card-foreground', '--popover-foreground', '--secondary-foreground'],

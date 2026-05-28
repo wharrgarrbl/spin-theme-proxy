@@ -750,7 +750,7 @@ footer img[alt="TalTech SPIN"] {
 
 img[src*="spin-logo"],
 img[alt="TalTech SPIN"] {
-  content: url("/logo.svg");
+  content: url("/logo.svg);
   filter: brightness(0) invert(1); /* make it white on dark bg */
 }
 
