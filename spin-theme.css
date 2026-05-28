@@ -113,7 +113,7 @@
 
 body {
   background-color: var(--spin-bg-page);
-  color: #fff;
+  color: var(--spin-text);
   font-family: 'Proxima Nova', 'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
 }
@@ -141,7 +141,7 @@ nav,
 [class*="navigation"] {
   background-color: var(--spin-bg-nav) !important;
   border-bottom-color: rgba(var(--spin-accent-rgb), 0.15) !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 /* Center the nav using auto margins — no touching the logo link */
@@ -166,7 +166,7 @@ header div:has(button[class*="px-2"]) {
 /* Nav logo / brand text */
 header a,
 nav a {
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 header a:hover,
@@ -220,7 +220,7 @@ button[class*="ghost"]:hover {
 [class*="Card"] {
   background-color: var(--spin-bg-card) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 [class*="card-title"],
@@ -231,7 +231,7 @@ button[class*="ghost"]:hover {
 
 [class*="card-description"],
 [class*="CardDescription"] {
-  color: #888 !important;
+  color: var(--spin-text-subtle) !important;
 }
 
 
@@ -268,7 +268,7 @@ img,
   -webkit-background-clip: unset !important;
   background-clip: unset !important;
   -webkit-text-fill-color: unset !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 /* ─── 7. BADGES & TAGS ──────────────────────────────────────────────────── */
@@ -299,13 +299,13 @@ select,
 [class*="Input"] {
   background-color: var(--spin-bg-secondary) !important;
   border-color: #2a2a2a !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
   border-radius: 0.75rem !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #555 !important;
+  color: var(--spin-text-muted) !important;
 }
 
 input:focus,
@@ -327,7 +327,7 @@ select:focus,
 
 [role="tab"],
 [class*="TabsTrigger"] {
-  color: #888 !important;
+  color: var(--spin-text-subtle) !important;
   border-radius: 50px !important;
 }
 
@@ -347,8 +347,8 @@ select:focus,
 /* ─── 10b. LIGHT-BG ACCENT CARDS (e.g. Võimalused ja teenused) ─────────── */
 
 [class*="bg-taltech-light"] {
-  background-color: #111 !important;
-  color: #fff !important;
+  background-color: var(--spin-bg-card) !important;
+  color: var(--spin-text) !important;
 }
 
 [class*="border-l-taltech-burgundy"],
@@ -357,7 +357,7 @@ select:focus,
 }
 
 [class*="bg-taltech-light"] p {
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 /* ─── 11. SEPARATORS & DIVIDERS ─────────────────────────────────────────── */
@@ -422,7 +422,7 @@ hr,
 [class*="text-foreground"],
 [class*="text-card-foreground"],
 [class*="text-popover-foreground"] {
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 body.light-mode [class*="text-gray-9"],
@@ -459,11 +459,11 @@ body.light-mode [class*="text-popover-foreground"] {
 
 /* Bullet points & list items */
 ul, ol {
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 li {
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 li::marker {
@@ -503,7 +503,7 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 }
 
 [class*="text-muted"] {
-  color: #888 !important;
+  color: var(--spin-text-subtle) !important;
 }
 
 /* ─── 12c. TEAL → CYAN REPLACEMENT ─────────────────────────────────────── */
@@ -590,9 +590,9 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="Dialog"][class*="Content"],
 [class*="sheet"],
 [class*="Sheet"][class*="Content"] {
-  background-color: #111 !important;
+  background-color: var(--spin-bg-card) !important;
   border-color: #222 !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 [class*="DropdownMenuItem"]:hover,
@@ -659,12 +659,12 @@ footer,
 [class*="Footer"] {
   background-color: var(--spin-bg-nav) !important;
   border-top-color: rgba(var(--spin-accent-rgb), 0.15) !important;
-  color: #fff !important;
+  color: var(--spin-text) !important;
 }
 
 footer a,
 [class*="footer"] a {
-  color: #888 !important;
+  color: var(--spin-text-subtle) !important;
 }
 
 footer a:hover,
@@ -731,7 +731,7 @@ footer a:hover,
 
 ::selection {
   background-color: rgba(0, 255, 240, 0.25);
-  color: #fff;
+  color: var(--spin-text);
 }
 
 /* ─── 17. LOGO SIZE ─────────────────────────────────────────────────────── */
