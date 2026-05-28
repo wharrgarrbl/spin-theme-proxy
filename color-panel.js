@@ -23,7 +23,7 @@
   var TOKEN_MAP = {
     '--spin-bg-page':      ['--background', '--taltech-grey100', '--taltech-dark'],
     '--spin-bg-nav':       ['--taltech-primary', '--taltech-primary-dark', '--sidebar-background'],
-    '--spin-bg-section':   ['--taltech-grey200'],
+    '--spin-bg-section':   ['--taltech-grey200', '--taltech-light'],
     '--spin-bg-card':      ['--card', '--popover'],
     '--spin-bg-secondary': ['--secondary', '--muted', '--border'],
     '--spin-bg-input':     ['--input'],

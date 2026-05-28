@@ -345,10 +345,16 @@ select:focus,
   border-left: none !important;
 }
 
-/* ─── 10b. LIGHT-BG ACCENT CARDS (e.g. Võimalused ja teenused) ─────────── */
+/* ─── 10b. SECTION BACKGROUNDS (bg-taltech-light) ───────────────────────── */
 
-[class*="bg-taltech-light"] {
-  background-color: var(--spin-bg-card) !important;
+[class*="bg-taltech-light"]:not([class*="bg-taltech-light/"]) {
+  background-color: var(--spin-bg-section) !important;
+  color: var(--spin-text) !important;
+}
+
+/* 50% opacity variant — blend toward page bg */
+[class*="bg-taltech-light/"] {
+  background-color: color-mix(in srgb, var(--spin-bg-section) 50%, var(--spin-bg-page)) !important;
   color: var(--spin-text) !important;
 }
 
