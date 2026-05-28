@@ -6,6 +6,7 @@ const app = express();
 
 app.use('/spin-theme.css', express.static(path.join(__dirname, 'spin-theme.css')));
 app.use('/theme-toggle.js', express.static(path.join(__dirname, 'theme-toggle.js')));
+app.use('/color-panel.js', express.static(path.join(__dirname, 'color-panel.js')));
 app.use('/logo.svg', express.static(path.join(__dirname, 'logo.svg')));
 
 app.use('/', createProxyMiddleware({
@@ -22,7 +23,7 @@ app.use('/', createProxyMiddleware({
         const html = responseBuffer.toString('utf8');
         return html
           .replace('</head>', '<link rel="stylesheet" href="/spin-theme.css">\n</head>')
-          .replace('</body>', '<script src="/theme-toggle.js"></script>\n</body>');
+          .replace('</body>', '<script src="/theme-toggle.js"></script>\n<script src="/color-panel.js"></script>\n</body>');
       }
       return responseBuffer;
     }),

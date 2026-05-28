@@ -8,26 +8,46 @@
  * to cover the vast majority of the UI.  Component-level tweaks follow below.
  *
  * Brand palette
- *   Cyan  #00FFF0  → hsl(177 100% 50%)
+ *   Cyan  var(--spin-accent)  → hsl(177 100% 50%)
  *   Black #000000
  *   White #FFFFFF
  */
+
+/* ─── 0. SPIN PALETTE VARIABLES (live-editable via control panel) ────────── */
+/*    Change these to retheme the whole site. The JS panel in the proxy       */
+/*    updates them in real-time; use "Copy CSS" to get final values.          */
+
+:root {
+  --spin-bg-page:      #080808;   /* body / page background                  */
+  --spin-bg-nav:       #000000;   /* header & nav bar                        */
+  --spin-bg-section:   #0a0a0a;   /* alternate section backgrounds           */
+  --spin-bg-card:      #111111;   /* cards, icon grid cells                  */
+  --spin-bg-secondary: #1a1a1a;   /* secondary surfaces                      */
+  --spin-bg-input:     #1e1e1e;   /* form inputs                             */
+  --spin-bg-overlay:   #212121;   /* dropdowns / popovers                    */
+  --spin-text:         #ffffff;   /* primary text                            */
+  --spin-text-muted:   #555555;   /* muted / secondary text                  */
+  --spin-text-subtle:  #888888;   /* subtle / tertiary text                  */
+  --spin-accent:       #00FFF0;   /* brand cyan                              */
+  --spin-accent-hover: #4dfff5;   /* cyan hover state                        */
+  --spin-accent-rgb:   0, 255, 240; /* for rgba() tints                      */
+}
 
 /* ─── 1. DESIGN TOKENS ──────────────────────────────────────────────────── */
 
 :root {
   /* Base surface & text */
-  --background:           0 0% 3%;      /* #080808 — main page bg          */
+  --background:           0 0% 3%;      /* var(--spin-bg-page) — main page bg          */
   --foreground:           0 0% 100%;    /* #fff  — main text               */
 
   /* Cards & popovers */
-  --card:                 0 0% 13%;     /* #212121 — card bg               */
+  --card:                 0 0% 13%;     /* var(--spin-bg-overlay) — card bg               */
   --card-foreground:      0 0% 100%;
   --popover:              0 0% 13%;
   --popover-foreground:   0 0% 100%;
 
   /* Primary = cyan CTA (button bg, active states) */
-  --primary:              177 100% 50%; /* #00FFF0                         */
+  --primary:              177 100% 50%; /* var(--spin-accent)                         */
   --primary-foreground:   0 0% 0%;      /* black text on cyan              */
 
   /* Secondary = dark surface (ghost cards, backgrounds) */
@@ -92,7 +112,7 @@
 /* ─── 2. BASE OVERRIDES ─────────────────────────────────────────────────── */
 
 body {
-  background-color: #080808;
+  background-color: var(--spin-bg-page);
   color: #fff;
   font-family: 'Proxima Nova', 'proxima-nova', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 300;
@@ -106,10 +126,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Links */
 a {
-  color: #00FFF0;
+  color: var(--spin-accent);
 }
 a:hover {
-  color: #4dfff5;
+  color: var(--spin-accent-hover);
 }
 
 /* ─── 3. NAVIGATION ─────────────────────────────────────────────────────── */
@@ -119,8 +139,8 @@ nav,
 [class*="header"],
 [class*="navbar"],
 [class*="navigation"] {
-  background-color: #000 !important;
-  border-bottom-color: rgba(0, 255, 240, 0.15) !important;
+  background-color: var(--spin-bg-nav) !important;
+  border-bottom-color: rgba(var(--spin-accent-rgb), 0.15) !important;
   color: #fff !important;
 }
 
@@ -152,14 +172,14 @@ nav a {
 header a:hover,
 nav a:hover,
 nav [aria-current="page"] {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
 }
 
 /* Active nav indicator */
 nav [data-state="active"],
 nav [aria-current="page"] {
-  color: #00FFF0 !important;
-  border-bottom-color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
+  border-bottom-color: var(--spin-accent) !important;
 }
 
 /* ─── 4. BUTTONS ────────────────────────────────────────────────────────── */
@@ -169,7 +189,7 @@ button[class*="bg-primary"],
 [class*="btn-primary"],
 [class*="Button"][class*="default"],
 [class*="button"][class*="default"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
   color: #000 !important;
   border-radius: 50px !important;
   font-weight: 700 !important;
@@ -178,34 +198,34 @@ button[class*="bg-primary"],
 }
 button[class*="bg-primary"]:hover,
 [class*="btn-primary"]:hover {
-  background-color: #4dfff5 !important;
+  background-color: var(--spin-accent-hover) !important;
 }
 
 /* Outline / ghost buttons */
 button[class*="outline"],
 button[class*="ghost"] {
-  border-color: #00FFF0 !important;
-  color: #00FFF0 !important;
+  border-color: var(--spin-accent) !important;
+  color: var(--spin-accent) !important;
   border-radius: 50px !important;
   background: transparent !important;
 }
 button[class*="outline"]:hover,
 button[class*="ghost"]:hover {
-  background-color: rgba(0, 255, 240, 0.1) !important;
+  background-color: rgba(var(--spin-accent-rgb), 0.1) !important;
 }
 
 /* ─── 5. CARDS ──────────────────────────────────────────────────────────── */
 
 [class*="card"],
 [class*="Card"] {
-  background-color: #000 !important;
+  background-color: var(--spin-bg-card) !important;
   border-color: rgba(255, 255, 255, 0.08) !important;
   color: #fff !important;
 }
 
 [class*="card-title"],
 [class*="CardTitle"] {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
   font-weight: 300 !important;
 }
 
@@ -257,17 +277,17 @@ img,
 [class*="Badge"],
 [class*="tag"],
 [class*="Tag"] {
-  background-color: rgba(0, 255, 240, 0.1) !important;
-  color: #00FFF0 !important;
-  border-color: rgba(0, 255, 240, 0.3) !important;
+  background-color: rgba(var(--spin-accent-rgb), 0.1) !important;
+  color: var(--spin-accent) !important;
+  border-color: rgba(var(--spin-accent-rgb), 0.3) !important;
   border-radius: 50px !important;
 }
 
 /* Secondary badge variant */
 [class*="badge"][class*="secondary"],
 [class*="Badge"][class*="secondary"] {
-  background-color: rgba(0, 255, 240, 0.08) !important;
-  color: rgba(0, 255, 240, 0.7) !important;
+  background-color: rgba(var(--spin-accent-rgb), 0.08) !important;
+  color: rgba(var(--spin-accent-rgb), 0.7) !important;
 }
 
 /* ─── 8. INPUTS & FORMS ─────────────────────────────────────────────────── */
@@ -277,7 +297,7 @@ textarea,
 select,
 [class*="input"],
 [class*="Input"] {
-  background-color: #1a1a1a !important;
+  background-color: var(--spin-bg-secondary) !important;
   border-color: #2a2a2a !important;
   color: #fff !important;
   border-radius: 0.75rem !important;
@@ -292,8 +312,8 @@ input:focus,
 textarea:focus,
 select:focus,
 [class*="input"]:focus {
-  border-color: #00FFF0 !important;
-  box-shadow: 0 0 0 2px rgba(0, 255, 240, 0.2) !important;
+  border-color: var(--spin-accent) !important;
+  box-shadow: 0 0 0 2px rgba(var(--spin-accent-rgb), 0.2) !important;
   outline: none !important;
 }
 
@@ -301,7 +321,7 @@ select:focus,
 
 [role="tablist"],
 [class*="TabsList"] {
-  background-color: #1a1a1a !important;
+  background-color: var(--spin-bg-secondary) !important;
   border-radius: 50px !important;
 }
 
@@ -313,7 +333,7 @@ select:focus,
 
 [role="tab"][data-state="active"],
 [class*="TabsTrigger"][data-state="active"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
   color: #000 !important;
   font-weight: 700 !important;
 }
@@ -333,7 +353,7 @@ select:focus,
 
 [class*="border-l-taltech-burgundy"],
 [class*="border-taltech-burgundy"] {
-  border: 1px solid #00FFF0 !important;
+  border: 1px solid var(--spin-accent) !important;
 }
 
 [class*="bg-taltech-light"] p {
@@ -345,8 +365,8 @@ select:focus,
 hr,
 [class*="separator"],
 [class*="Separator"] {
-  border-color: #1e1e1e !important;
-  background-color: #1e1e1e !important;
+  border-color: var(--spin-bg-input) !important;
+  background-color: var(--spin-bg-input) !important;
 }
 
 /* ─── 11. SECTION BACKGROUNDS ───────────────────────────────────────────── */
@@ -357,23 +377,23 @@ hr,
 [class*="bg-white"],
 [class*="bg-taltech-grey100"],
 [class*="bg-taltech-grey200"] {
-  background-color: #0a0a0a !important;
+  background-color: var(--spin-bg-section) !important;
 }
 
 [class*="bg-taltech-primary"],
 [class*="bg-primary"] {
-  background-color: #000 !important;
+  background-color: var(--spin-bg-nav) !important;
 }
 
 [class*="bg-taltech-secondary"],
 [class*="bg-secondary"] {
-  background-color: #1a1a1a !important;
+  background-color: var(--spin-bg-secondary) !important;
 }
 
 /* Cyan accent sections */
 [class*="bg-taltech-accent"],
 [class*="bg-accent"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
   color: #000 !important;
 }
 
@@ -447,7 +467,7 @@ li {
 }
 
 li::marker {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
 }
 
 /* Custom dot bullets (span or div used as bullet) */
@@ -455,7 +475,7 @@ li span[class*="rounded-full"][class*="bg-secondary"],
 li span[class*="rounded-full"][class*="bg-primary"],
 [class*="w-2.5"][class*="h-2.5"][class*="rounded-full"],
 [class*="w-1.5"][class*="h-1.5"][class*="rounded-full"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
 }
 
 /* text-foreground/70 opacity text inside list items */
@@ -479,7 +499,7 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="text-accent"],
 [class*="text-teal"],
 [class*="text-cyan"] {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
 }
 
 [class*="text-muted"] {
@@ -493,7 +513,7 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="bg-taltech-accent"],
 [class*="bg-taltech-burgundy"],
 [class*="bg-accent"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
   color: #000 !important;
 }
 
@@ -523,21 +543,21 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 }
 
 [class*="bg-taltech-burgundy"]:not([class*="bg-taltech-burgundy/"]) svg {
-  color: #00FFF0 !important;
-  stroke: #00FFF0 !important;
+  color: var(--spin-accent) !important;
+  stroke: var(--spin-accent) !important;
 }
 
 /* Ring / outline teal → cyan */
 [class*="ring-teal"],
 [class*="ring-taltech-accent"],
 [class*="ring-accent"] {
-  --tw-ring-color: #00FFF0 !important;
+  --tw-ring-color: var(--spin-accent) !important;
 }
 
 /* Divide teal → cyan */
 [class*="divide-teal"],
 [class*="divide-taltech-accent"] {
-  border-color: #00FFF0 !important;
+  border-color: var(--spin-accent) !important;
 }
 
 /* Fill / stroke (SVG icons) teal → cyan */
@@ -545,20 +565,20 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="fill-taltech-accent"],
 [class*="stroke-teal"],
 [class*="stroke-taltech-accent"] {
-  fill: #00FFF0 !important;
-  stroke: #00FFF0 !important;
+  fill: var(--spin-accent) !important;
+  stroke: var(--spin-accent) !important;
 }
 
 /* Decoration teal → cyan */
 [class*="decoration-teal"],
 [class*="decoration-taltech-accent"] {
-  text-decoration-color: #00FFF0 !important;
+  text-decoration-color: var(--spin-accent) !important;
 }
 
 /* Shadow teal → cyan */
 [class*="shadow-teal"],
 [class*="shadow-taltech-accent"] {
-  --tw-shadow-color: #00FFF0 !important;
+  --tw-shadow-color: var(--spin-accent) !important;
 }
 
 /* ─── 13. DROPDOWN / SELECT / POPOVER ──────────────────────────────────── */
@@ -578,14 +598,14 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="DropdownMenuItem"]:hover,
 [class*="SelectItem"][data-highlighted],
 [class*="MenuItem"]:hover {
-  background-color: rgba(0, 255, 240, 0.1) !important;
-  color: #00FFF0 !important;
+  background-color: rgba(var(--spin-accent-rgb), 0.1) !important;
+  color: var(--spin-accent) !important;
 }
 
 /* ─── 14. SCROLLBARS ────────────────────────────────────────────────────── */
 
 * {
-  scrollbar-color: #00FFF0 rgba(255, 255, 255, 0.06);
+  scrollbar-color: var(--spin-accent) rgba(255, 255, 255, 0.06);
   scrollbar-width: thin;
 }
 
@@ -600,12 +620,12 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00FFF0;
+  background: var(--spin-accent);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #4dfff5;
+  background: var(--spin-accent-hover);
 }
 
 /* ─── 15. CONTENT WIDTH ─────────────────────────────────────────────────── */
@@ -637,8 +657,8 @@ section > *,
 footer,
 [class*="footer"],
 [class*="Footer"] {
-  background-color: #000 !important;
-  border-top-color: rgba(0, 255, 240, 0.15) !important;
+  background-color: var(--spin-bg-nav) !important;
+  border-top-color: rgba(var(--spin-accent-rgb), 0.15) !important;
   color: #fff !important;
 }
 
@@ -649,7 +669,7 @@ footer a,
 
 footer a:hover,
 [class*="footer"] a:hover {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
 }
 
 /* ─── 16. 5-COL GRID → 3×2 ──────────────────────────────────────────────── */
@@ -685,8 +705,8 @@ footer a:hover,
 
 /* Four outer circles → solid cyan */
 [class*="w-\[155px\]"][class*="rounded-full"] {
-  background-color: #00FFF0 !important;
-  border-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
+  border-color: var(--spin-accent) !important;
 }
 
 [class*="w-\[155px\]"][class*="rounded-full"] svg,
@@ -697,14 +717,14 @@ footer a:hover,
 
 /* Center circle → black with cyan text */
 [class*="gradient-magenta"] {
-  background: #000 !important;
+  background: var(--spin-bg-nav) !important;
   background-image: none !important;
-  border: 1px solid #00FFF0 !important;
+  border: 1px solid var(--spin-accent) !important;
   box-shadow: none !important;
 }
 
 [class*="gradient-magenta"] span {
-  color: #00FFF0 !important;
+  color: var(--spin-accent) !important;
 }
 
 /* ─── 17. SELECTION ─────────────────────────────────────────────────────── */
@@ -737,7 +757,7 @@ img[alt="TalTech SPIN"] {
 /* ─── 18. FOCUS VISIBLE ─────────────────────────────────────────────────── */
 
 :focus-visible {
-  outline: 2px solid #00FFF0 !important;
+  outline: 2px solid var(--spin-accent) !important;
   outline-offset: 2px !important;
 }
 
@@ -870,7 +890,7 @@ body.light-mode [class*="bg-taltech-burgundy/10"] {
 /* ── bg-secondary / bg-taltech-secondary ─────────────────────────────────── */
 body.light-mode [class*="bg-taltech-secondary"],
 body.light-mode [class*="bg-secondary"] {
-  background-color: #00FFF0 !important;
+  background-color: var(--spin-accent) !important;
 }
 
 /* ── gradient-magenta button ─────────────────────────────────────────────── */
@@ -918,17 +938,17 @@ body.light-mode [class~="text-foreground"] {
 /* ── Badges ──────────────────────────────────────────────────────────────── */
 body.light-mode [class*="badge"],
 body.light-mode [class*="Badge"] {
-  background: #00FFF0 !important;
+  background: var(--spin-accent) !important;
   color: #000 !important;
-  border-color: #00FFF0 !important;
+  border-color: var(--spin-accent) !important;
 }
 
 body.light-mode span[class*="bg-taltech-green"] {
-  background: #00FFF0 !important;
-  background-color: #00FFF0 !important;
+  background: var(--spin-accent) !important;
+  background-color: var(--spin-accent) !important;
   color: #ffffff !important;
-  -webkit-text-fill-color: #00FFF0 !important;
-  border-color: #00FFF0 !important;
+  -webkit-text-fill-color: var(--spin-accent) !important;
+  border-color: var(--spin-accent) !important;
 }
 
 /* ── Opacity tint backgrounds ───────────────────────────────────────────── */
