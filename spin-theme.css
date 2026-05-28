@@ -806,6 +806,10 @@ section#contact-form,
   background: none !important;
 }
 
+footer {
+  margin-top: 40px !important;
+}
+
 /* ─── 19. LIGHT MODE ────────────────────────────────────────────────────── */
 /*
  * Light mode: light grey page, dark cards/tiles, no cyan on light surfaces.
