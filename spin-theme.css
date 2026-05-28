@@ -18,18 +18,18 @@
 /*    updates them in real-time; use "Copy CSS" to get final values.          */
 
 :root {
-  --spin-bg-page:      #080808;   /* body / page background                  */
-  --spin-bg-nav:       #000000;   /* header & nav bar                        */
-  --spin-bg-section:   #0a0a0a;   /* alternate section backgrounds           */
-  --spin-bg-card:      #111111;   /* cards, icon grid cells                  */
-  --spin-bg-secondary: #1a1a1a;   /* secondary surfaces                      */
-  --spin-bg-input:     #1e1e1e;   /* form inputs                             */
-  --spin-bg-overlay:   #212121;   /* dropdowns / popovers                    */
-  --spin-text:         #ffffff;   /* primary text                            */
-  --spin-text-muted:   #555555;   /* muted / secondary text                  */
-  --spin-text-subtle:  #888888;   /* subtle / tertiary text                  */
+  --spin-bg-page:      #f2f2f2;   /* body / page background                  */
+  --spin-bg-nav:       #ededed;   /* header & nav bar                        */
+  --spin-bg-section:   #dedede;   /* alternate section backgrounds           */
+  --spin-bg-card:      #c7c7c7;   /* cards, icon grid cells                  */
+  --spin-bg-secondary: #b0b0b0;   /* secondary surfaces                      */
+  --spin-bg-input:     #5b4848;   /* form inputs                             */
+  --spin-bg-overlay:   #ffa200;   /* dropdowns / popovers                    */
+  --spin-text:         #2b2b2b;   /* primary text                            */
+  --spin-text-muted:   #ff0000;   /* muted / secondary text                  */
+  --spin-text-subtle:  #0d0d0d;   /* subtle / tertiary text                  */
   --spin-accent:       #00FFF0;   /* brand cyan                              */
-  --spin-accent-hover: #4dfff5;   /* cyan hover state                        */
+  --spin-accent-hover: #ff0000;   /* cyan hover state                        */
   --spin-accent-rgb:   0, 255, 240; /* for rgba() tints                      */
   --spin-on-accent:    #000000;   /* text / icon color on top of accent bg   */
 }
