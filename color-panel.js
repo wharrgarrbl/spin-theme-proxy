@@ -14,6 +14,7 @@
     { key: '--spin-text-subtle',  label: 'Text subtle',    def: '#888888' },
     { key: '--spin-accent',       label: 'Accent (Cyan)',  def: '#00FFF0', group: 'ACCENT', isAccent: true },
     { key: '--spin-accent-hover', label: 'Accent hover',   def: '#4dfff5' },
+    { key: '--spin-on-accent',    label: 'On-Accent Text', def: '#000000' },
   ];
 
   var STORE_KEY = 'spin-palette';
@@ -30,6 +31,7 @@
     '--spin-text':         ['--foreground', '--card-foreground', '--popover-foreground', '--secondary-foreground'],
     '--spin-text-muted':   ['--muted-foreground'],
     '--spin-accent':       ['--primary', '--accent', '--ring'],
+    '--spin-on-accent':    ['--primary-foreground', '--accent-foreground'],
   };
 
   function hexToRgb(hex) {

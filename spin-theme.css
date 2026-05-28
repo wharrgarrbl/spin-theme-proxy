@@ -31,6 +31,7 @@
   --spin-accent:       #00FFF0;   /* brand cyan                              */
   --spin-accent-hover: #4dfff5;   /* cyan hover state                        */
   --spin-accent-rgb:   0, 255, 240; /* for rgba() tints                      */
+  --spin-on-accent:    #000000;   /* text / icon color on top of accent bg   */
 }
 
 /* ─── 1. DESIGN TOKENS ──────────────────────────────────────────────────── */
@@ -394,13 +395,13 @@ hr,
 [class*="bg-taltech-accent"],
 [class*="bg-accent"] {
   background-color: var(--spin-accent) !important;
-  color: #000 !important;
+  color: var(--spin-on-accent, #000) !important;
 }
 
 /* Text colour overrides for elements inside light-bg sections */
 [class*="bg-taltech-accent"] *,
 [class*="bg-accent"] * {
-  color: #000 !important;
+  color: var(--spin-on-accent, #000) !important;
 }
 
 /* ─── 12. TEXT READABILITY ON DARK BG ──────────────────────────────────── */
@@ -480,7 +481,8 @@ li span[class*="rounded-full"][class*="bg-primary"],
 
 /* text-foreground/70 opacity text inside list items */
 li[class*="text-foreground"] {
-  color: rgba(255, 255, 255, 0.75) !important;
+  color: var(--spin-text) !important;
+  opacity: 0.75;
 }
 
 /* Catch any remaining dark inline text (e.g. hardcoded Tailwind on badges/labels) */
@@ -496,10 +498,19 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="text-taltech-secondary"],
 [class*="text-taltech-accent"],
 [class*="text-taltech-burgundy"],
+[class*="text-taltech-green"],
 [class*="text-accent"],
 [class*="text-teal"],
 [class*="text-cyan"] {
   color: var(--spin-accent) !important;
+}
+
+/* primary-foreground: text/border on top of accent-coloured backgrounds */
+[class*="text-primary-foreground"] {
+  color: var(--spin-on-accent, #000) !important;
+}
+[class*="border-primary-foreground"] {
+  border-color: var(--spin-on-accent, #000) !important;
 }
 
 [class*="text-muted"] {
@@ -514,13 +525,13 @@ p, span, li, td, th, label, dt, dd, blockquote, figcaption {
 [class*="bg-taltech-burgundy"],
 [class*="bg-accent"] {
   background-color: var(--spin-accent) !important;
-  color: #000 !important;
+  color: var(--spin-on-accent, #000) !important;
 }
 
 [class*="bg-taltech-burgundy"] *,
 [class*="bg-taltech-accent"] *,
 [class*="bg-teal"] * {
-  color: #000 !important;
+  color: var(--spin-on-accent, #000) !important;
 }
 
 /* Border teal → cyan (including opacity variants like /30) */
@@ -711,8 +722,8 @@ footer a:hover,
 
 [class*="w-\[155px\]"][class*="rounded-full"] svg,
 [class*="w-\[155px\]"][class*="rounded-full"] span {
-  color: #000 !important;
-  stroke: #000 !important;
+  color: var(--spin-on-accent, #000) !important;
+  stroke: var(--spin-on-accent, #000) !important;
 }
 
 /* Center circle → black with cyan text */
@@ -750,7 +761,7 @@ footer img[alt="TalTech SPIN"] {
 
 img[src*="spin-logo"],
 img[alt="TalTech SPIN"] {
-  content: url("/logo.svg);
+  content: url("/logo.svg");
   filter: brightness(0) invert(1); /* make it white on dark bg */
 }
 
