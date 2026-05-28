@@ -806,6 +806,11 @@ section#contact-form,
   background: none !important;
 }
 
+.section-padding {
+  padding-top: 3rem !important;
+  padding-bottom: 3rem !important;
+}
+
 footer {
   margin-top: 40px !important;
 }
